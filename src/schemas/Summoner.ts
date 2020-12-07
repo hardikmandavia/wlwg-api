@@ -1,5 +1,7 @@
 import { Field, ObjectType } from "type-graphql";
 
+import LeagueEntry from "./LeagueEntry";
+
 @ObjectType()
 export default class Summoner {
   @Field()
@@ -26,8 +28,8 @@ export default class Summoner {
   @Field()
   region: string;
 
-  // @Field(type => [LeagueEntry])
-  // ranked: LeagueEntry[];
+  @Field(() => [LeagueEntry])
+  ranked: LeagueEntry[];
 
   // @Field(type => MatchList)
   // matchList: MatchList;

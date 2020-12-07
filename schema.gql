@@ -3,9 +3,24 @@
 # !!!   DO NOT MODIFY THIS FILE BY YOURSELF   !!!
 # -----------------------------------------------
 
+type LeagueEntry {
+  freshBlood: Boolean!
+  hotStreak: Boolean!
+  inactive: Boolean!
+  leagueId: String!
+  leaguePoints: Float!
+  losses: Float!
+  queueType: String!
+  rank: String!
+  summonerId: String!
+  summonerName: String!
+  tier: String!
+  veteran: Boolean!
+  wins: Float!
+}
+
 type Query {
-  fetchSummoner(name: String!, region: String!): Summoner!
-  hello: String!
+  summoner(name: String!, region: String!): Summoner!
 }
 
 type Summoner {
@@ -14,6 +29,7 @@ type Summoner {
   name: String!
   profileIconId: Float!
   puuid: String!
+  ranked: [LeagueEntry!]!
   region: String!
   revisionDate: Float!
   summonerLevel: Float!

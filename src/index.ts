@@ -1,19 +1,14 @@
 import "reflect-metadata";
-import express from "express";
-import { ApolloServer } from "apollo-server-express";
+import { ApolloServer } from "apollo-server";
 import { buildSchema } from "type-graphql";
 
-import { HelloResolver, SummonerResolver } from "./resolvers";
-
 import { env } from "./environment";
+import * as resolvers from "./resolvers";
 
 const main = async () => {
-  const app = express();
-
   const schema = await buildSchema({
-    resolvers: [HelloResolver, SummonerResolver],
+    resolvers: Object.values(resolvers) as any,
     emitSchemaFile: true,
-    validate: false,
   });
 
   const apolloServer = new ApolloServer({
@@ -21,16 +16,11 @@ const main = async () => {
     context: ({ req }) => ({ params: req.body }),
   });
 
-  apolloServer.applyMiddleware({
-    app,
-    cors: false,
-  });
-
   console.log(env);
 
-  app.listen(env.port, () => {
-    console.log(`server started on port ${env.port}`);
-  });
+  apolloServer
+    .listen(env.port)
+    .then(({ url }) => console.log(`Server ready at ${url}`));;;
 };
 
 main().catch((err) => {

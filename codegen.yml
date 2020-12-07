@@ -1,0 +1,7 @@
+overwrite: true
+generates:
+  src/__generated__/types.ts:
+    schema: schema.gql
+    plugins:
+      - "typescript"
+      - "typescript-resolvers"
