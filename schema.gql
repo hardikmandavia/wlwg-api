@@ -19,7 +19,176 @@ type LeagueEntry {
   wins: Float!
 }
 
+type Match {
+  gameCreation: Float!
+  gameDuration: Float!
+  gameId: Float!
+  gameMode: String!
+  gameType: String!
+  gameVersion: String!
+  mapId: Float!
+  participantIdentities: [ParticipantIdentity!]!
+  participants: [Participant!]!
+  platformId: String!
+  queueId: Float!
+  seasonId: Float!
+  teams: [TeamStats!]!
+}
+
+type MatchList {
+  endIndex: Float!
+  matches: [MatchReference!]!
+  startIndex: Float!
+  totalGames: Float!
+}
+
+type MatchReference {
+  champion: Float!
+  gameId: Float!
+  lane: String!
+  platformId: String!
+  queue: Float!
+  role: String!
+  season: Float!
+  timestamp: Float!
+}
+
+type Participant {
+  championId: Float!
+  highestAchievedSeasonTier: String!
+  participantId: Float!
+  spell1Id: Float!
+  spell2Id: Float!
+  stats: ParticipantStats!
+  teamId: Float!
+  timeline: ParticipantTimeline!
+}
+
+type ParticipantIdentity {
+  participantId: Float!
+  player: Player!
+}
+
+type ParticipantStats {
+  altarsCaptured: Float!
+  altarsNeutralized: Float!
+  assists: Float!
+  champLevel: Float!
+  combatPlayerScore: Float!
+  damageDealtToObjectives: Float!
+  damageDealtToTurrets: Float!
+  damageSelfMitigated: Float!
+  deaths: Float!
+  doubleKills: Float!
+  firstBloodAssist: Boolean!
+  firstBloodKill: Boolean!
+  firstInhibitorAssist: Boolean!
+  firstInhibitorKill: Boolean!
+  firstTowerAssist: Boolean!
+  firstTowerKill: Boolean!
+  goldEarned: Float!
+  goldSpent: Float!
+  inhibitorKills: Float!
+  item0: Float!
+  item1: Float!
+  item2: Float!
+  item3: Float!
+  item4: Float!
+  item5: Float!
+  item6: Float!
+  killingSprees: Float!
+  kills: Float!
+  largestCriticalStrike: Float!
+  largestKillingSpree: Float!
+  largestMultiKill: Float!
+  longestTimeSpentLiving: Float!
+  magicalDamageTaken: Float!
+  magicDamageDealt: Float!
+  magicDamageDealtToChampions: Float!
+  neutralMinionsKilled: Float!
+  neutralMinionsKilledEnemyJungle: Float!
+  neutralMinionsKilledTeamJungle: Float!
+  nodeCapture: Float!
+  nodeCaptureAssist: Float!
+  nodeNeutralize: Float!
+  nodeNeutralizeAssist: Float!
+  objectivePlayerScore: Float!
+  participantId: Float!
+  pentaKills: Float!
+  perk0: Float!
+  perk1: Float!
+  perk2: Float!
+  perk3: Float!
+  perk4: Float!
+  perk5: Float!
+  perkPrimaryStyle: Float!
+  perkSubStyle: Float!
+  physicalDamageDealt: Float!
+  physicalDamageDealtToChampions: Float!
+  physicalDamageTaken: Float!
+  playerScore0: Float!
+  playerScore1: Float!
+  playerScore2: Float!
+  playerScore3: Float!
+  playerScore4: Float!
+  playerScore5: Float!
+  playerScore6: Float!
+  playerScore7: Float!
+  playerScore8: Float!
+  playerScore9: Float!
+  quadraKills: Float!
+  sightWardsBoughtInGame: Float!
+  teamObjective: Float!
+  timeCCingOthers: Float!
+  totalDamageDealt: Float!
+  totalDamageDealtToChampions: Float!
+  totalDamageTaken: Float!
+  totalHeal: Float!
+  totalMinionsKilled: Float!
+  totalPlayerScore: Float!
+  totalScoreRank: Float!
+  totalTimeCrowdControlDealt: Float!
+  totalUnitsHealed: Float!
+  tripleKills: Float!
+  trueDamageDealt: Float!
+  trueDamageDealtToChampions: Float!
+  trueDamageTaken: Float!
+  turretKills: Float!
+  unrealKills: Float!
+  visionScore: Float!
+  visionWardsBoughtInGame: Float!
+  wardsKilled: Float!
+  wardsPlaced: Float!
+  win: Boolean!
+}
+
+type ParticipantTimeline {
+  creepsPerMin: TimelineDelta!
+  csDiffPerMin: TimelineDelta!
+  damageTakenDiffPerMin: TimelineDelta!
+  damageTakenPerMin: TimelineDelta!
+  goldPerMin: TimelineDelta!
+  lane: String!
+  participantId: Float!
+  role: String!
+  xpDiffPerMin: TimelineDelta!
+  xpPerMin: TimelineDelta!
+}
+
+type Player {
+  accountId: String!
+  currentAccountId: String!
+  currentPlatformId: String!
+  matchHistoryUri: String!
+  platformId: String!
+  profileIcon: Float!
+  summonerId: String!
+  summonerName: String!
+}
+
 type Query {
+  match(gameId: Float!, region: String!): Match!
+  matchList(accountId: String!, region: String!): MatchList!
   summoner(name: String!, region: String!): Summoner!
 }
 
@@ -33,4 +202,32 @@ type Summoner {
   region: String!
   revisionDate: Float!
   summonerLevel: Float!
+}
+
+type TeamBans {
+  championId: Float!
+}
+
+type TeamStats {
+  bans: [TeamBans!]!
+  baronKills: Float!
+  dragonKills: Float!
+  firstBaron: Boolean!
+  firstBlood: Boolean!
+  firstDragon: Boolean!
+  firstInhibitor: Boolean!
+  firstRiftHerald: Boolean!
+  firstTower: Boolean!
+  inhibitorKills: Float!
+  riftHeraldKills: Float!
+  teamId: Float!
+  towerKills: Float!
+  win: String!
+}
+
+type TimelineDelta {
+  p0: Float!
+  p1: Float!
+  p2: Float!
+  p3: Float!
 }

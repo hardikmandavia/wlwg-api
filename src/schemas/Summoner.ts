@@ -30,7 +30,4 @@ export default class Summoner {
 
   @Field(() => [LeagueEntry])
   ranked: LeagueEntry[];
-
-  // @Field(type => MatchList)
-  // matchList: MatchList;
 }
