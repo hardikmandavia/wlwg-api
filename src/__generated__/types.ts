@@ -13,6 +13,13 @@ export type Scalars = {
   Float: number;
 };
 
+export type Champion = {
+  __typename?: 'Champion';
+  id: Scalars['String'];
+  key: Scalars['String'];
+  name: Scalars['String'];
+};
+
 export type LeagueEntry = {
   __typename?: 'LeagueEntry';
   freshBlood: Scalars['Boolean'];
@@ -69,8 +76,9 @@ export type MatchReference = {
 
 export type Participant = {
   __typename?: 'Participant';
+  champion: Champion;
   championId: Scalars['Float'];
-  highestAchievedSeasonTier: Scalars['String'];
+  highestAchievedSeasonTier?: Maybe<Scalars['String']>;
   participantId: Scalars['Float'];
   spell1Id: Scalars['Float'];
   spell2Id: Scalars['Float'];
@@ -352,9 +360,10 @@ export type DirectiveResolverFn<TResult = {}, TParent = {}, TContext = {}, TArgs
 
 /** Mapping between all available schema types and the resolvers types */
 export type ResolversTypes = {
+  Champion: ResolverTypeWrapper<Champion>;
+  String: ResolverTypeWrapper<Scalars['String']>;
   LeagueEntry: ResolverTypeWrapper<LeagueEntry>;
   Boolean: ResolverTypeWrapper<Scalars['Boolean']>;
-  String: ResolverTypeWrapper<Scalars['String']>;
   Float: ResolverTypeWrapper<Scalars['Float']>;
   Match: ResolverTypeWrapper<Match>;
   MatchList: ResolverTypeWrapper<MatchList>;
@@ -373,9 +382,10 @@ export type ResolversTypes = {
 
 /** Mapping between all available schema types and the resolvers parents */
 export type ResolversParentTypes = {
+  Champion: Champion;
+  String: Scalars['String'];
   LeagueEntry: LeagueEntry;
   Boolean: Scalars['Boolean'];
-  String: Scalars['String'];
   Float: Scalars['Float'];
   Match: Match;
   MatchList: MatchList;
@@ -390,6 +400,13 @@ export type ResolversParentTypes = {
   TeamBans: TeamBans;
   TeamStats: TeamStats;
   TimelineDelta: TimelineDelta;
+};
+
+export type ChampionResolvers<ContextType = any, ParentType extends ResolversParentTypes['Champion'] = ResolversParentTypes['Champion']> = {
+  id?: Resolver<ResolversTypes['String'], ParentType, ContextType>;
+  key?: Resolver<ResolversTypes['String'], ParentType, ContextType>;
+  name?: Resolver<ResolversTypes['String'], ParentType, ContextType>;
+  __isTypeOf?: IsTypeOfResolverFn<ParentType, ContextType>;
 };
 
 export type LeagueEntryResolvers<ContextType = any, ParentType extends ResolversParentTypes['LeagueEntry'] = ResolversParentTypes['LeagueEntry']> = {
@@ -447,8 +464,9 @@ export type MatchReferenceResolvers<ContextType = any, ParentType extends Resolv
 };
 
 export type ParticipantResolvers<ContextType = any, ParentType extends ResolversParentTypes['Participant'] = ResolversParentTypes['Participant']> = {
+  champion?: Resolver<ResolversTypes['Champion'], ParentType, ContextType>;
   championId?: Resolver<ResolversTypes['Float'], ParentType, ContextType>;
-  highestAchievedSeasonTier?: Resolver<ResolversTypes['String'], ParentType, ContextType>;
+  highestAchievedSeasonTier?: Resolver<Maybe<ResolversTypes['String']>, ParentType, ContextType>;
   participantId?: Resolver<ResolversTypes['Float'], ParentType, ContextType>;
   spell1Id?: Resolver<ResolversTypes['Float'], ParentType, ContextType>;
   spell2Id?: Resolver<ResolversTypes['Float'], ParentType, ContextType>;
@@ -635,6 +653,7 @@ export type TimelineDeltaResolvers<ContextType = any, ParentType extends Resolve
 };
 
 export type Resolvers<ContextType = any> = {
+  Champion?: ChampionResolvers<ContextType>;
   LeagueEntry?: LeagueEntryResolvers<ContextType>;
   Match?: MatchResolvers<ContextType>;
   MatchList?: MatchListResolvers<ContextType>;

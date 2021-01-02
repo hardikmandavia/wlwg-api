@@ -26,8 +26,3 @@ export const fetch = async <T>(url: string) => {
   const res = await axios.get<T>(url, { headers });
   return res.data;
 };
-
-// export const fetchResponse = async (url: string) => {
-//   const res = await fetch(url);
-//   return res.data;
-// };

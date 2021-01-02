@@ -7,7 +7,7 @@ const endpoint = "match/v4";
 
 export const getMatchListByAccount = (region: string, accountId: string) => {
   const method = "matchlists/by-account";
-  const url = `${getUrl(region, endpoint, method)}/${accountId}`;
+  const url = `${getUrl(region, endpoint, method)}/${accountId}?queue=420`;
   return fetch<MatchList>(`${url}`);
 };
 

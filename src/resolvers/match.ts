@@ -27,6 +27,7 @@ export default class {
 const formatTimeline = (timeline: ParticipantTimeline) => {
   const {
     creepsPerMinDeltas,
+    csDiffPerMinDeltas,
     damageTakenDiffPerMinDeltas,
     damageTakenPerMinDeltas,
     xpDiffPerMinDeltas,
@@ -35,6 +36,7 @@ const formatTimeline = (timeline: ParticipantTimeline) => {
   } = timeline;
 
   timeline.creepsPerMin = formatDeltas(creepsPerMinDeltas);
+  timeline.csDiffPerMin = formatDeltas(csDiffPerMinDeltas);
   timeline.damageTakenDiffPerMin = formatDeltas(damageTakenDiffPerMinDeltas);
   timeline.damageTakenPerMin = formatDeltas(damageTakenPerMinDeltas);
   timeline.xpDiffPerMin = formatDeltas(xpDiffPerMinDeltas);

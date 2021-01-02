@@ -1,5 +1,6 @@
 import { Field, ObjectType } from "type-graphql";
 
+import Champion from "./Champion";
 import ParticipantStats from "./ParticipantStats";
 import ParticipantTimeline from "./ParticipantTimeline";
 
@@ -10,6 +11,9 @@ export default class Participant {
 
   @Field()
   championId: number;
+
+  @Field()
+  champion: Champion;
 
   @Field()
   stats: ParticipantStats;
@@ -26,6 +30,6 @@ export default class Participant {
   @Field()
   spell2Id: number;
 
-  @Field()
+  @Field({ nullable: true })
   highestAchievedSeasonTier: string; // (Legal values: CHALLENGER, MASTER, DIAMOND, PLATINUM, GOLD, SILVER, BRONZE, UNRANKED)
 }

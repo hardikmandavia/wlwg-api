@@ -3,6 +3,12 @@
 # !!!   DO NOT MODIFY THIS FILE BY YOURSELF   !!!
 # -----------------------------------------------
 
+type Champion {
+  id: String!
+  key: String!
+  name: String!
+}
+
 type LeagueEntry {
   freshBlood: Boolean!
   hotStreak: Boolean!
@@ -54,8 +60,9 @@ type MatchReference {
 }
 
 type Participant {
+  champion: Champion!
   championId: Float!
-  highestAchievedSeasonTier: String!
+  highestAchievedSeasonTier: String
   participantId: Float!
   spell1Id: Float!
   spell2Id: Float!

@@ -9,6 +9,7 @@ export default class ParticipantTimeline {
 
   @Field()
   csDiffPerMin: TimelineDelta; //	Creep score difference versus the calculated lane opponent(s) for a specified period.
+  csDiffPerMinDeltas: { [key: string]: number };
 
   @Field()
   damageTakenPerMin: TimelineDelta; // Damage taken for a specified period.
