@@ -12,7 +12,7 @@ export default class Participant {
   @Field()
   championId: number;
 
-  @Field()
+  @Field(() => Champion, { nullable: true })
   champion: Champion;
 
   @Field()

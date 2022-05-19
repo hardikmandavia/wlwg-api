@@ -60,7 +60,7 @@ type MatchReference {
 }
 
 type Participant {
-  champion: Champion!
+  champion: Champion
   championId: Float!
   highestAchievedSeasonTier: String
   participantId: Float!

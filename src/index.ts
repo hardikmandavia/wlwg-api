@@ -20,7 +20,7 @@ const main = async () => {
 
   apolloServer
     .listen(env.port)
-    .then(({ url }) => console.log(`Server ready at ${url}`));;;
+    .then(({ url }) => console.log(`Server ready at ${url}`));
 };
 
 main().catch((err) => {

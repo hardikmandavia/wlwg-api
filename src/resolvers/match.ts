@@ -4,6 +4,9 @@ import Match from "../schemas/Match";
 import ParticipantTimeline from "../schemas/ParticipantTimeline";
 
 import { getMatchByGameId } from "../riotApi/matches";
+import { Champion as ChampionType } from "../champions";
+
+import * as champions from "../champion-data.json";
 
 @Resolver(() => Match)
 export default class {
@@ -16,6 +19,7 @@ export default class {
       const formatted = { ...data };
       formatted.participants = formatted.participants.map((p) => ({
         ...p,
+        champion: getChampionData(p.championId.toString()),
         timeline: formatTimeline(p.timeline),
       }));
 
@@ -52,5 +56,17 @@ const formatDeltas = (deltas: { [key: string]: number }) => {
     p1: deltas["10-20"] || 0,
     p2: deltas["20-30"] || 0,
     p3: deltas["30-end"] || 0,
+  };
+};
+
+const getChampionData = (championId: string) => {
+  const { id, key, name } = (champions as { [key: string]: ChampionType })[
+    championId
+  ];
+
+  return {
+    id,
+    key,
+    name,
   };
 };

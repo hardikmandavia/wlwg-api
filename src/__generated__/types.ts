@@ -76,7 +76,7 @@ export type MatchReference = {
 
 export type Participant = {
   __typename?: 'Participant';
-  champion: Champion;
+  champion?: Maybe<Champion>;
   championId: Scalars['Float'];
   highestAchievedSeasonTier?: Maybe<Scalars['String']>;
   participantId: Scalars['Float'];
@@ -464,7 +464,7 @@ export type MatchReferenceResolvers<ContextType = any, ParentType extends Resolv
 };
 
 export type ParticipantResolvers<ContextType = any, ParentType extends ResolversParentTypes['Participant'] = ResolversParentTypes['Participant']> = {
-  champion?: Resolver<ResolversTypes['Champion'], ParentType, ContextType>;
+  champion?: Resolver<Maybe<ResolversTypes['Champion']>, ParentType, ContextType>;
   championId?: Resolver<ResolversTypes['Float'], ParentType, ContextType>;
   highestAchievedSeasonTier?: Resolver<Maybe<ResolversTypes['String']>, ParentType, ContextType>;
   participantId?: Resolver<ResolversTypes['Float'], ParentType, ContextType>;
